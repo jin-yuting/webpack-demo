@@ -6,7 +6,6 @@ module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
-    path: './dist',
     path: path.resolve(__dirname, 'dist'),
     assetModuleFilename: 'static/images/[hash:10][ext][query]',
     // 自动清空上次打包的内容
@@ -55,7 +54,7 @@ module.exports = {
       title: 'webpack-demo',
       template: './public/index.html'
     }),
-    new ESLintPlugin(options),
+    new ESLintPlugin(),
     // css打包至单独文件
     // new MiniCssExtractPlugin({
     //   filename: 'index.css'
