@@ -1,12 +1,16 @@
 const path = require('path')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin');
+// css压缩
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
+    chunkFilename: 'static/js/[name].js',
     assetModuleFilename: 'static/images/[hash:10][ext][query]',
     // 自动清空上次打包的内容
     clean: true,
@@ -46,20 +50,38 @@ module.exports = {
           filename: 'static/iconfont/[hash:10][ext][query]'
         }
       },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'], // 智能预设
+            cacheDirectory: true, // 开启缓存
+            cacheCompression: false, // 关闭缓存压缩（为了提升缓存速度，不需要压缩）
+            plugins: ['@babel/plugin-transform-runtime']
+          }
+        }
+      }
     ]
   },
   // 插件
   plugins: [
+    // html自动引入js文件
     new HtmlWebpackPlugin({
       title: 'webpack-demo',
-      template: './public/index.html'
+      template: './public/index.html' //保留原来html文本模版
     }),
-    new ESLintPlugin(),
+    new ESLintPlugin({
+      cache: true
+    }),
     // css打包至单独文件
-    // new MiniCssExtractPlugin({
-    //   filename: 'index.css'
-    // })
+    new MiniCssExtractPlugin({
+      filename: 'static/css/index.css',
+    }),
+    new CssMinimizerPlugin()
   ],
   // 模式
-  mode: 'development'
+  mode: 'production',
+  devtool: 'source-map'
 }

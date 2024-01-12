@@ -10,7 +10,8 @@ module.exports = {
     "es6": true  
   },  
   rules: {  
-    "max-len": ["error", {"code": 66}],  
+    "max-len": ["error", {"code": 1200}],  
     "no-undef": "off"  
-  }  
+  },
+  // plugins: ["import"], // 支持动态导入语法
 }
