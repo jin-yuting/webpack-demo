@@ -10,6 +10,7 @@ module.exports = {
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, '../dist'),
+    chunkFilename: 'static/js/[name].chunk.js',
     assetModuleFilename: 'static/images/[hash:10][ext][query]',
     // 自动清空上次打包的内容
     clean: true,
@@ -99,7 +100,8 @@ module.exports = {
     new ESLintPlugin(),
     // css打包至单独文件
     new MiniCssExtractPlugin({
-      filename: 'static/css/index.css',
+      filename: 'static/css/[name].css',
+      chunkFilename: 'static/css/[name].chunk.js',
     }),
     // new ImageMinimizerPlugin({
     //   minimizerOptions: {
@@ -124,6 +126,9 @@ module.exports = {
   optimization: {
     splitChunks: {
       chunks: 'all', // 对所有模块都分割,只针对node modules 文件分割
-    }
+    },
+    runtimeChunk: {
+      // name: (entrypoint) => `runtime~${entrypoint.name}`,
+    },
   }
 }

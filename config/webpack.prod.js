@@ -4,13 +4,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ESLintPlugin = require('eslint-webpack-plugin');
 // css压缩
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+// js文件加载方式- 配置打包出问题
+// const PreloadWebpackPlugin = require('preload-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'main.js',
     path: path.resolve(__dirname, '../dist'),
-    chunkFilename: 'static/js/[name].js',
+    chunkFilename: 'static/js/[name].chunk.js',
+    // 图片和字体等
     assetModuleFilename: 'static/images/[hash:10][ext][query]',
     // 自动清空上次打包的内容
     clean: true,
@@ -72,14 +76,22 @@ module.exports = {
       title: 'webpack-demo',
       template: './public/index.html' //保留原来html文本模版
     }),
+    // new PreloadWebpackPlugin(),
     new ESLintPlugin({
       cache: true
     }),
     // css打包至单独文件
     new MiniCssExtractPlugin({
-      filename: 'static/css/index.css',
+      filename: 'static/css/[name].css',
+      chunkFilename: 'static/css/[name].chunk.js',
     }),
-    new CssMinimizerPlugin()
+    new CssMinimizerPlugin(),
+    new WorkboxPlugin.GenerateSW({
+      // 这些选项帮助快速启用 ServiceWorkers
+      // 不允许遗留任何“旧的” ServiceWorkers
+      clientsClaim: true,
+      skipWaiting: true,
+    }),
   ],
   // 模式
   mode: 'production',
