@@ -25,3 +25,14 @@
   preload 立即加载资源，优先级高
   prefetch 空闲时加载资源，优先级低
 
+# loader
+1.同步 loader
+2.异步 loader
+3.raw loader
+4.pitch loader
+5.自定义 loader
+  clean-log-loader
+  banner-loader
+  babel-loader
+  file-loader
+  style-loader

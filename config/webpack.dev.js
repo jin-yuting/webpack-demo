@@ -67,27 +67,42 @@ module.exports = {
           filename: 'static/iconfont/[hash:10][ext][query]'
         }
       },
+      // {
+      //   test: /\.js$/,
+      //   exclude: /(node_modules)/, //排除
+      //   use: [
+      //     {
+      //       loader: "thread-loader",
+      //       options: {
+      //         workers: 2,
+      //       }
+      //     },
+      //     {
+      //       loader: 'babel-loader',
+      //       options: {
+      //         // presets: ['@babel/preset-env'], // 智能预设
+      //         cacheDirectory: true, // 开启缓存
+      //         cacheCompression: false, // 关闭缓存压缩（为了提升缓存速度，不需要压缩）
+      //         plugins: ['@babel/plugin-transform-runtime'], // 避免重复引用
+      //       }
+      //     }
+      //   ]
+      // },
+      // {
+      //   test: /\.js$/,
+      //   loader: "../loaders/test-loader.js"
+      // },
+      // {
+      //   test: /\.js$/,
+      //   loader: "../loaders/clean-log-loader.js"
+      // },
       {
         test: /\.js$/,
-        exclude: /(node_modules)/, //排除
-        use: [
-          {
-            loader: "thread-loader",
-            options: {
-              workers: 2,
-            }
-          },
-          {
-            loader: 'babel-loader',
-            options: {
-              // presets: ['@babel/preset-env'], // 智能预设
-              cacheDirectory: true, // 开启缓存
-              cacheCompression: false, // 关闭缓存压缩（为了提升缓存速度，不需要压缩）
-              plugins: ['@babel/plugin-transform-runtime'], // 避免重复引用
-            }
-          }
-        ]
-      }
+        loader: "../loaders/banner-loader.js",
+        options: {
+          author: '老王'
+        }
+      },
     ]
   },
   // 插件
