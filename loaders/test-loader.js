@@ -24,7 +24,7 @@ module.exports = function(content, map, meta) {
 
 /*
 raw loader
-接受到content 是buffer数据，（图片数据）
+接受到content 是buffer数据，（图片,字体 数据）
 */ 
 module.exports = function(content) {
   return content
@@ -39,7 +39,7 @@ module.exports = function(content) {
   return content
 }
 module.exports.pitch = function() {
-  console.log('1111');
+  console.log('pitch2');
   // 如果有return 后面会终止
   return '111';
 };

@@ -96,12 +96,24 @@ module.exports = {
       //   test: /\.js$/,
       //   loader: "../loaders/clean-log-loader.js"
       // },
+      // {
+      //   test: /\.js$/,
+      //   loader: "../loaders/banner-loader.js",
+      //   options: {
+      //     author: '老王'
+      //   }
+      // },
+      // {
+      //   test: /\.js$/,
+      //   loader: "../loaders/babel-loader.js",
+      //   options: {
+      //     presets: ["@babel/preset-env"]
+      //   }
+      // },
       {
-        test: /\.js$/,
-        loader: "../loaders/banner-loader.js",
-        options: {
-          author: '老王'
-        }
+        test: /\.(png|jpg|gif)$/,
+        loader: "../loaders/file-loader.js",
+        type: "javascript/auto", // 阻止webpack默认处理图片资源，只使用file-loader
       },
     ]
   },
