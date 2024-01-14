@@ -9,6 +9,8 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 // const BannerWebpackPlugin = require("../plugins/banner-plugin")
+// const cleanWebpackPlugin = require("../plugins/clean-plugin")
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -98,6 +100,7 @@ module.exports = {
     //     author: '老王'
     //   }
     // })
+    // new cleanWebpackPlugin()
   ],
   // 模式
   mode: 'production',
