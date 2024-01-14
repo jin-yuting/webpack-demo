@@ -8,6 +8,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 // const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
+// const BannerWebpackPlugin = require("../plugins/banner-plugin")
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -92,6 +93,11 @@ module.exports = {
       clientsClaim: true,
       skipWaiting: true,
     }),
+    // new BannerWebpackPlugin({
+    //   options: {
+    //     author: '老王'
+    //   }
+    // })
   ],
   // 模式
   mode: 'production',

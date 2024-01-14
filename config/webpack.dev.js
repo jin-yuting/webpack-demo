@@ -5,6 +5,9 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 // 图片压缩：1.配置有问题
 // const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 
+// const TestPlugin = require("../plugins/test-plugin")
+
+
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -139,6 +142,8 @@ module.exports = {
     //     ],
     //   },
     // })
+    // new TestPlugin()
+    
   ],
   // 开发服务器：不会输出资源，在内存中编译打包的
   devServer: {
