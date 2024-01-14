@@ -36,3 +36,4 @@
   babel-loader
   file-loader
   style-loader
+6.自定义 plugin 
